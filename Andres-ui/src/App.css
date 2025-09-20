@@ -1,0 +1,135 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #111214;
+  color: #e5e5e5;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+/* Root should not shrink width */
+#root {
+  max-width: 100%;
+  text-align: initial;
+}
+
+/* Container */
+.andres-chat-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: #111214;
+}
+
+/* Banner */
+.andres-banner {
+  width: 100%;
+  background: #18191b;
+  color: #bcbcbc;
+  padding: 35px 0 18px 0;
+  text-align: center;   /* ✅ center heading */
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+/* Messages */
+.andres-messages {
+  flex: 1 1 auto;
+  width: 100%;
+  overflow-y: auto;
+  background: #111214;
+  display: flex;
+  align-self: flex-end; 
+  padding-left: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.andres-message {
+  margin-bottom: 18px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  background: #232325;
+  color: #e5e5e5;
+  align-self: flex-end;
+  max-width: 60vw;
+  min-width: 80px;
+  word-break: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  font-size: 17px;
+}
+
+/* Input area */
+.andres-input-area {
+  width: 100%;
+  background: rgba(17, 18, 20, 0.98);
+  display: flex;
+  justify-content: center;   /* ✅ center horizontally */
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0 32px 0;
+  border-top: 1px solid #232325;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.18);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.andres-input {
+  flex: 1;
+  max-width: 700px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 24px;
+  font-size: 18px;
+  background: #18191b;
+  color: #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.andres-input:focus {
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  background: #232325;
+}
+
+/* Buttons */
+.andres-send-btn,
+.plus-btn {
+  padding: 0 32px;
+  height: 48px;
+  background: linear-gradient(90deg, #232325 0%, #444 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,44,44,0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.andres-send-btn:hover,
+.plus-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #232325 100%);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  transform: translateY(-2px) scale(1.04);
+}

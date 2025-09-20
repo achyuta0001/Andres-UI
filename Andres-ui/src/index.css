@@ -1,0 +1,158 @@
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #111214;
+  color: #e5e5e5;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.andres-chat-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #111214;
+}
+
+.andres-banner {
+  width: 100%;
+  background: #18191b;
+  color: #bcbcbc;
+  padding: 35px 40px 18px 0;
+  text-align: center;   /* ✅ center the heading */
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.andres-input-area {
+  width: 100%;
+  background: rgba(17, 18, 20, 0.98);
+  display: flex;
+  justify-content: center;   /* ✅ center input + button */
+  align-items: center;
+  padding: 24px 0 32px 0;
+  border-top: 1px solid #232325;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.18);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+
+.andres-messages {
+  flex: 1 1 auto;
+  width: 100%;
+  overflow-y: auto;
+  background: #111214;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0; /* Remove padding */
+  box-sizing: border-box;
+}
+
+.andres-message {
+  margin-bottom: 18px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  background: #232325;
+  color: #e5e5e5;
+  align-self: flex-start; /* Align messages to the left */
+  max-width: 60vw;
+  min-width: 80px;
+  word-break: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  font-size: 17px;
+}
+
+
+.andres-input {
+  flex: 1;
+  max-width: 700px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 24px;
+  outline: none;
+  font-size: 18px;
+  background: #18191b;
+  color: #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s, border 0.2s;
+  margin-right: 12px;
+}
+
+.andres-input:focus {
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  background: #232325;
+}
+
+.andres-send-btn {
+  padding: 0 32px;
+  height: 48px;
+  background: linear-gradient(90deg, #232325 0%, #444 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,44,44,0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.andres-send-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #232325 100%);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+
+/* Plus Button Styles */
+.plus-btn {
+  padding: 0 32px;
+  height: 48px;
+  background: linear-gradient(90deg, #232325 0%, #444 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,44,44,0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.plus-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #232325 100%);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
