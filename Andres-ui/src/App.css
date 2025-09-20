@@ -17,13 +17,7 @@ html, body, #root {
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
-/* Root should not shrink width */
-#root {
-  max-width: 100%;
-  text-align: initial;
-}
-
-/* Container */
+/* Chat container */
 .andres-chat-container {
   height: 100vh;
   width: 100vw;
@@ -38,39 +32,50 @@ html, body, #root {
   background: #18191b;
   color: #bcbcbc;
   padding: 35px 0 18px 0;
-  text-align: center;   /* ✅ center heading */
+  text-align: center;
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 2px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
-/* Messages */
+/* Messages container */
 .andres-messages {
   flex: 1 1 auto;
   width: 100%;
   overflow-y: auto;
   background: #111214;
   display: flex;
-  align-self: flex-end; 
-  padding-left: 40px;
   flex-direction: column;
-  align-items: flex-start;
   padding: 20px;
+  gap: 12px;
 }
 
+/* Common message bubble */
 .andres-message {
-  margin-bottom: 18px;
+  margin-bottom: 0;
   padding: 14px 20px;
   border-radius: 18px;
-  background: #232325;
-  color: #e5e5e5;
-  align-self: flex-end;
   max-width: 60vw;
   min-width: 80px;
   word-break: break-word;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   font-size: 17px;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+/* User messages on the right */
+.andres-message.me {
+  align-self: flex-end;
+  background: #58586f;
+  color: #e5e5e5;
+}
+
+/* Server messages on the left */
+.andres-message.server {
+  align-self: flex-start;
+  background: #a18626;
+  color: #e5e5e5;
 }
 
 /* Input area */
@@ -78,7 +83,7 @@ html, body, #root {
   width: 100%;
   background: rgba(17, 18, 20, 0.98);
   display: flex;
-  justify-content: center;   /* ✅ center horizontally */
+  justify-content: center;
   align-items: center;
   gap: 12px;
   padding: 24px 0 32px 0;
@@ -90,6 +95,7 @@ html, body, #root {
   z-index: 10;
 }
 
+/* Input field */
 .andres-input {
   flex: 1;
   max-width: 700px;
@@ -132,4 +138,18 @@ html, body, #root {
   background: linear-gradient(90deg, #444 0%, #232325 100%);
   box-shadow: 0 4px 16px rgba(44,44,44,0.18);
   transform: translateY(-2px) scale(1.04);
+}
+
+/* Scrollbar */
+.andres-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.andres-messages::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.andres-messages::-webkit-scrollbar-track {
+  background: #111214;
 }
