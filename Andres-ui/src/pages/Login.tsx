@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./../styles/Login.css";
+import "./../styles/login.css";
 
 type LoginProps = {
-  onLogin: (value: boolean) => void;
+  onLogin: (username: string, password: string) => void;
 };
 
 function Login({ onLogin }: LoginProps) {
@@ -16,23 +16,17 @@ function Login({ onLogin }: LoginProps) {
     e.preventDefault();
     setError("");
 
-    // ✅ Hardcoded check for now
-    if (username === "admin" && password === "admin") {
-      onLogin(true); // update auth state in App
-      navigate("/chat"); // go to Chat page (match your route in App.tsx)
+    if (username === "pjba" && password === "cicada") {
+      onLogin(username, password); // update auth state
+      navigate("/chat");
     } else {
       setError("Invalid username or password.");
     }
   };
 
-  //   const handlePlusClick = () => {
-  //     alert("Plus button clicked!");
-  //   };
-
   return (
     <div className="login-container">
       <div className="login-banner">LOGIN</div>
-
       <form className="login-form" onSubmit={handleLogin}>
         {error && <div className="login-error">{error}</div>}
 
@@ -51,18 +45,9 @@ function Login({ onLogin }: LoginProps) {
           className="login-input"
         />
 
-        <div className="login-buttons">
-          <button type="submit" className="login-btn">
-            Login
-          </button>
-          {/* <button
-            type="button"
-            className="login-plus-btn"
-            onClick={handlePlusClick}
-          >
-            ➕
-          </button> */}
-        </div>
+        <button type="submit" className="login-btn">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -5,30 +5,44 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useState } from "react";
-import Chat from "./pages/Chat";
 import Login from "./pages/Login";
+import Chat from "./pages/Chat";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authData, setAuthData] = useState<{
+    username: string;
+    password: string;
+  } | null>(null);
 
   return (
     <Router>
       <Routes>
-        {/* Redirect root `/` to `/login` */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Login route — pass down setIsAuthenticated */}
-        <Route path="/login" element={<Login onLogin={setIsAuthenticated} />} />
-
-        {/* Protected Chat route */}
         <Route
-          path="/chat"
+          path="/login"
           element={
-            isAuthenticated ? <Chat /> : <Navigate to="/login" replace />
+            <Login
+              onLogin={(username: string, password: string) => {
+                setIsAuthenticated(true);
+                setAuthData({ username, password });
+              }}
+            />
           }
         />
 
-        {/* Catch-all redirect */}
+        <Route
+          path="/chat"
+          element={
+            isAuthenticated && authData ? (
+              <Chat username={authData.username} password={authData.password} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

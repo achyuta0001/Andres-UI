@@ -1,17 +1,22 @@
 import { useState, useRef, useEffect } from "react";
-import "./../App.css";
+import "./../styles/chat.css";
+
+type ChatProps = {
+  username: string;
+  password: string;
+};
+
 type ChatMessage = {
   text: string;
   sender: "me" | "server";
 };
 
-function Chat() {
+function Chat({ username, password }: ChatProps) {
   const [userMessages, setUserMessages] = useState<ChatMessage[]>([]);
   const [serverMessages, setServerMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll to bottom whenever a message is added
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [userMessages, serverMessages]);
@@ -20,22 +25,25 @@ function Chat() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message
     const userMsg: ChatMessage = { text: input, sender: "me" };
     setUserMessages((prev) => [...prev, userMsg]);
 
     try {
       const response = await fetch(
         `http://localhost:8080/chat?q=${encodeURIComponent(input)}`,
-        { method: "GET", headers: { "Content-Type": "text/plain" } }
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Basic " + btoa(`${username}:${password}`),
+          },
+        }
       );
       const serverReply = await response.text();
 
-      // Add server reply
       const serverMsg: ChatMessage = { text: serverReply, sender: "server" };
       setServerMessages((prev) => [...prev, serverMsg]);
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error(error);
       setServerMessages((prev) => [
         ...prev,
         { text: "⚠️ Error connecting to server", sender: "server" },
@@ -45,18 +53,18 @@ function Chat() {
     setInput("");
   };
 
-  // Clear messages handler for plus button
   const handlePlusClick = async () => {
     try {
-      // Clear backend chat history
-      await fetch("http://localhost:8080/chat/clearHistory", { method: "GET" });
+      await fetch("http://localhost:8080/chat/clearHistory", {
+        method: "GET",
+        headers: { Authorization: "Basic " + btoa(`${username}:${password}`) },
+      });
 
-      // Clear frontend messages
       setUserMessages([]);
       setServerMessages([]);
       setInput("");
     } catch (error) {
-      console.error("Error clearing messages:", error);
+      console.error(error);
       setServerMessages((prev) => [
         ...prev,
         { text: "⚠️ Error clearing messages", sender: "server" },
@@ -64,7 +72,6 @@ function Chat() {
     }
   };
 
-  // Merge user and server messages for display
   const mergedMessages: ChatMessage[] = [];
   const maxLength = Math.max(userMessages.length, serverMessages.length);
   for (let i = 0; i < maxLength; i++) {
@@ -73,16 +80,13 @@ function Chat() {
   }
 
   return (
-    <div className="andres-chat-container">
-      <div className="andres-banner">ANDRES</div>
-
-      <div className="andres-messages">
+    <div className="chat-container">
+      <div className="chat-banner">ANDRES</div>
+      <div className="chat-messages">
         {mergedMessages.map((msg, idx) => (
           <div
             key={idx}
-            className={`andres-message ${
-              msg.sender === "me" ? "me" : "server"
-            }`}
+            className={`chat-message ${msg.sender === "me" ? "me" : "server"}`}
           >
             {msg.text}
           </div>
@@ -90,12 +94,8 @@ function Chat() {
         <div ref={messagesEndRef} />
       </div>
 
-      <form className="andres-input-area" onSubmit={handleSend}>
-        <button
-          type="button"
-          className="plus-btn"
-          onClick={handlePlusClick} // clears frontend & backend messages
-        >
+      <form className="chat-input-area" onSubmit={handleSend}>
+        <button type="button" className="plus-btn" onClick={handlePlusClick}>
           ➕
         </button>
         <input
@@ -103,9 +103,9 @@ function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
-          className="andres-input"
+          className="chat-input"
         />
-        <button type="submit" className="andres-send-btn">
+        <button type="submit" className="send-btn">
           📩
         </button>
       </form>
