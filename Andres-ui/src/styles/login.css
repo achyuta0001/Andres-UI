@@ -1,0 +1,121 @@
+/* Root container */
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #111214;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  color: #e5e5e5;
+}
+
+/* Banner */
+.login-banner {
+  width: 100%;
+  background: #18191b;
+  color: #bcbcbc;
+  padding: 35px 0 18px 0;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  margin-bottom: 24px;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  width: 90%;
+  background: #18191b;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Input fields */
+.login-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 24px;
+  border: none;
+  background: #232325;
+  color: #e5e5e5;
+  font-size: 18px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.login-input:focus {
+  background: #2a2b2d;
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+}
+
+/* Buttons container */
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Login button */
+.login-btn {
+  flex: 1;
+  height: 48px;
+  background: linear-gradient(90deg, #232325 0%, #444 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,44,44,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #232325 100%);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Plus button */
+.login-plus-btn {
+  height: 48px;
+  padding: 0 24px;
+  background: linear-gradient(90deg, #232325 0%, #444 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,44,44,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.login-plus-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #232325 100%);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Error message */
+.login-error {
+  color: #ff6b6b;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
